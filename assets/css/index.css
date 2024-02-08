@@ -1,0 +1,99 @@
+html{
+    background-color: #242423;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(197, 58, 197);
+
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    width: 100%; /* Ocupa a largura total do elemento pai */
+}
+
+
+nav ul{
+    display: inline-flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+
+}
+
+nav ul li {
+    margin: 0 20px; /* Reduz a margem horizontal */
+}
+
+nav ul li a {
+    color: rgb(197, 58, 197); /* Cor padrão dos links */
+    text-decoration: none; /* Opção para remover o sublinhado */
+}
+
+    
+hr {
+     border: none; /* Remove a borda padrão */
+     height: 2px; /* Espessura da linha */
+     background-color: rgb(197, 58, 197); /* Cor da linha, preto neste caso */
+     margin: 0; /* Remove qualquer margem padrão para estender até as bordas da página */
+    }
+
+.quem-sou-titulo{
+    display: flex;
+    height: 20px;
+    position: relative;
+    top: 50px; /* Ajuste o valor para mover a div para baixo */
+    
+    justify-content: center; /* Alinha horizontalmente */
+    align-items: center;     /* Alinha verticalmente */
+    text-align: center;
+}    
+
+
+.boxQuem-sou{
+    display: flex;
+    justify-content: center; /* Alinha horizontalmente */
+    align-items: center;     /* Alinha verticalmente */
+    
+    height: 55vh;           /* Altura total da viewport */
+        
+    }
+
+.conteudoQuem-sou{
+    width: 550px;
+    height: 100px;  /* ou qualquer largura desejada */
+    text-align: center; /* Alinha o texto dentro da div 'content' */
+
+    }
+
+.conteudoQuem-sou #meuNome{
+    color: #000;
+}
+    
+ #minhaFoto{
+    width: 2000x;
+    height: 250px;
+    position: relative;
+    bottom: 25px;
+}    
+
+.conteudoQuem-sou p{
+    font-size: 15px;
+    color: rgb(245, 196, 223);
+
+}    
+.badges img{
+    position: relative;
+    top: 20px; /* Ajuste o valor para mover a div para baixo */
+    height: 30px;
+    width: 100px;
+}
+
+.footer{
+    color: antiquewhite;
+    font-size: 10px;
+        position: relative;
+        top: 310px; /* Ajuste o valor para mover a div para baixo */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

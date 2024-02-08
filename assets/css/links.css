@@ -1,0 +1,126 @@
+html{
+    background-color: #242423;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(245, 196, 223);
+
+}
+nav {
+    display: flex;
+    justify-content: center;
+    width: 100%; /* Ocupa a largura total do elemento pai */
+}
+
+
+nav ul{
+    display: inline-flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+
+}
+
+nav ul li {
+    margin: 0 20px; /* Reduz a margem horizontal */
+}
+
+nav ul li a {
+    color: rgb(197, 58, 197); /* Cor padrão dos links */
+    text-decoration: none; /* Opção para remover o sublinhado */
+}
+
+    
+hr {
+     border: none; /* Remove a borda padrão */
+     height: 2px; /* Espessura da linha */
+     background-color: rgb(197, 58, 197); /* Cor da linha, preto neste caso */
+     margin: 0; /* Remove qualquer margem padrão para estender até as bordas da página */
+    }
+
+  
+.textos{
+        width: 600px; 
+        height: 300px; 
+        margin-left: auto;
+        margin-right: auto; 
+        text-align: center;
+        position: relative;
+        top: 0px;
+        font-size:15px;
+    
+    } 
+  
+.textos ul{
+       text-align: left;
+       padding-left: 2.5%;
+    
+    }     
+
+.textos li{
+    position: relative;
+    color: rgb(197, 58, 197);
+    text-decoration: rgb(245, 196, 223);
+    font-size: 15px;
+    line-height: 2;
+    text-align: left;
+
+} 
+.textos a{
+    position: relative;
+    color: rgb(245, 196, 223);
+    text-decoration: rgb(245, 196, 223);
+    font-size: 15px;
+    text-align: left;
+    text-decoration: underline;
+
+}       
+
+
+.atus{
+    width: 600px; 
+    height: 300px; 
+    margin-left: auto;
+    margin-right: auto; 
+    text-align: center;
+    position: relative;
+    top: -140px;
+    font-size:20px;
+
+}
+.atus h3 {
+    position: relative;
+    top: -10px;
+    font-size:20px;
+    
+    
+}
+.atus h4 {
+    position: relative;
+    top: -15px;
+    font-size:15px;
+    color: rgb(197, 58, 197);
+}
+
+.atus p {
+    position: relative;
+    top: -20px;
+    font-size:13px;
+    text-decoration:  rgb(197, 58, 197);
+    text-align: left;
+}
+
+
+
+
+.footer{
+    color: antiquewhite;
+    font-size: 10px;
+    position: relative;
+    top: 200px; /* Ajuste o valor para mover a div para baixo */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+
