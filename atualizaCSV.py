@@ -182,7 +182,7 @@ if temp is not None:
     plt.gcf().autofmt_xdate()
 
     # Configurar limites para cada eixo Y em cada subplot
-    axs[0].set_ylim(df['Dew Point'].min()-3, df['Temperature'].max()+3)
+    axs[0].set_ylim(df['Dew Point'].min()-2, df['Temperature'].max()+2)
     #axs[1].set_ylim(max(df['Humidity'].min()-10, 0), 101)
     axs[2].set_ylim(df['Pressure'].min()-2, df['Pressure'].max()+2)
 
