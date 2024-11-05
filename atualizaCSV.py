@@ -94,7 +94,7 @@ if temp is not None:
 
     # Configurar subplots
     fig, axs = plt.subplots(3, 1, figsize=(10, 8), sharex=True)
-    fig.suptitle("Tempo nas últimas 24 horas")
+    fig.suptitle("Tempo e Extremos nas últimas 24 horas")
 
     # Definir o colormap baseado na temperatura - NÃO ALTERAR O COLORMAP
     c1 = plt.cm.Purples(np.linspace(0, 1, 50))
@@ -143,7 +143,6 @@ if temp is not None:
     
     plt.subplots_adjust(right=0.5)
     # Exibir mínimas e máximas diárias à direita
-    plt.figtext(0.99, 0.95, "Extremos das últimas 24h", fontsize=14)
     plt.figtext(0.99, 0.83, "Temperatura", fontsize=12)
     plt.figtext(0.99, 0.80, f"Mínima: {min_temp:.1f} °C")
     plt.figtext(0.99, 0.78, f"Máxima: {max_temp:.1f} °C")
