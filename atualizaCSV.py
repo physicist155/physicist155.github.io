@@ -158,7 +158,7 @@ if temp is not None:
     axs[0].plot(df['Timestamp'], df['Temperature'], label="Temperatura", color='red', marker='o')
     axs[0].plot(df['Timestamp'], df['Dew Point'], label="Ponto de orvalho", color="green", linestyle="--", marker='o',markersize=3)
     axs[0].set_ylabel("Temperatura (°C)")
-    axs[0].yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{x:.0f}"))
+    axs[0].yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{x:.1f}"))
     axs[0].legend(loc="upper left")
     axs[0].grid(True)
 
