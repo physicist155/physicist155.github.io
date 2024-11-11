@@ -12,21 +12,45 @@
             min-height: 100vh;
             margin: 0;
             flex-direction: column;
-            text-align: center; /* Centraliza o texto no conteúdo */
+            text-align: center;
         }
 
-        /* Ajuste da imagem */
+        /* Estilo para centralizar as imagens horizontalmente */
+        .imagens-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Espaçamento entre as imagens */
+        }
+
+        /* Ajuste das imagens com position */
+        .imagem1 {
+            position: relative;
+            top: -120px; /* Ajuste a posição vertical da primeira imagem */
+        }
+
+        .imagem2 {
+            position: relative;
+            top: 30px; /* Ajuste a posição vertical da segunda imagem */
+        }
+
         img {
             max-width: 100%;
             height: auto;
             display: block;
-            margin: 0 auto; /* Centraliza horizontalmente em navegadores mais antigos */
+        }
+
+        /* Adiciona mais espaço entre as imagens e o texto */
+        .texto-final {
+            margin-top: 50px; /* Ajuste este valor conforme necessário */
         }
     </style>
 </head>
 <body>
-    <img src="graph.png" alt="Gráfico do Tempo Atual">
-    <p>Essa estação também pode ser visualizada no <a href="https://www.wunderground.com/dashboard/pws/ISOPAU314">Weather Underground.</a></p>
-    <p>Oferecimento: Hackerspace IFUSP e LFA-USP.</p>
+    <div class="imagens-container">
+        <img src="graph.png" alt="Gráfico do Tempo Atual" class="imagem1">
+        <img src="previsao.png" alt="Previsão do Tempo" class="imagem2">
+    </div>
+    <h2 class="texto-final">Essa estação também pode ser visualizada no <a href="https://www.wunderground.com/dashboard/pws/ISOPAU314">Weather Underground.</a></h2>
+    <h2 class="texto-final">Oferecimento: Hackerspace IFUSP e LFA-USP.</h2>
 </body>
 </html>
