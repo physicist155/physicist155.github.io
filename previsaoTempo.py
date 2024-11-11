@@ -8,6 +8,7 @@ import matplotlib.image as mpimg
 import textwrap
 from datetime import datetime, timezone, timedelta
 import pytz
+import os
 from PIL import Image
 
 # Função para quebrar o texto entre palavras com um limite de largura
