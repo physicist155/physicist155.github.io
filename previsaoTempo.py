@@ -19,7 +19,7 @@ def wrap_text(text, width=12):
 WU_API_KEY = os.getenv('WU_API_KEY')
 latitude = -23.56  # Latitude de São Paulo
 longitude = -46.73  # Longitude de São Paulo
-url = f"https://api.weather.com/v3/wx/forecast/daily/5day?geocode={latitude},{longitude}&format=json&units=m&language=pt&apiKey={API_KEY}"
+url = f"https://api.weather.com/v3/wx/forecast/daily/5day?geocode={latitude},{longitude}&format=json&units=m&language=pt&apiKey={WU_API_KEY}"
 
 # Obtendo o horário atual em HBR
 sao_paulo_tz = pytz.timezone("America/Sao_Paulo")
