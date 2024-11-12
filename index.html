@@ -22,26 +22,22 @@
             gap: 20px; /* Espaçamento entre as imagens */
         }
 
-        /* Ajuste das imagens com position */
-        .imagem1 {
-            position: relative;
-            top: -120px; /* Ajuste a posição vertical da primeira imagem */
-        }
-
-        .imagem2 {
-            position: relative;
-            top: 30px; /* Ajuste a posição vertical da segunda imagem */
-        }
-
         img {
-            max-width: 100%;
-            height: auto;
+            width: 900px; /* Define a largura das imagens */
+            height: auto; /* Mantém a proporção da imagem */
             display: block;
         }
 
         /* Adiciona mais espaço entre as imagens e o texto */
         .texto-final {
             margin-top: 50px; /* Ajuste este valor conforme necessário */
+        }
+
+        /* Estilo para alinhar o primeiro h2 à esquerda */
+        .texto-final:first-of-type {
+            text-align: left;
+            width: 100%; /* Faz o elemento ocupar toda a largura disponível */
+            padding-left: 20px; /* Opcional: ajuste de espaçamento da borda esquerda */
         }
     </style>
 </head>
@@ -54,3 +50,4 @@
     <h2 class="texto-final">Oferecimento: Hackerspace IFUSP e LFA-USP.</h2>
 </body>
 </html>
+
