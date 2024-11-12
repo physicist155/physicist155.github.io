@@ -1,3 +1,4 @@
+
 import numpy as np
 import requests
 from datetime import datetime
@@ -8,7 +9,6 @@ import matplotlib.image as mpimg
 import textwrap
 from datetime import datetime, timezone, timedelta
 import pytz
-import os
 from PIL import Image
 
 # Função para quebrar o texto entre palavras com um limite de largura
@@ -17,6 +17,7 @@ def wrap_text(text, width=12):
 
 # Define os parâmetros da API
 WU_API_KEY = os.getenv('WU_API_KEY')
+
 latitude = -23.56  # Latitude de São Paulo
 longitude = -46.73  # Longitude de São Paulo
 url = f"https://api.weather.com/v3/wx/forecast/daily/5day?geocode={latitude},{longitude}&format=json&units=m&language=pt&apiKey={WU_API_KEY}"
@@ -41,29 +42,34 @@ else:
 dias = forecast_data['dayOfWeek']
 temp_max = forecast_data['calendarDayTemperatureMax']
 temp_min = forecast_data['calendarDayTemperatureMin']
-temp_max_parc = forecast_data['temperatureMax']         ##
-temp_min_parc = forecast_data['temperatureMin']         ##
+temp_max_parc = forecast_data['temperatureMax']
+temp_min_parc = forecast_data['temperatureMin']
 precip_volume = forecast_data['qpf']
-precip_prob = forecast_data['daypart'][0]['precipChance'][::2]  # Filtra apenas as chances diurnas
 narrativas = [narr.split('.')[0] + '.' for narr in forecast_data['narrative']]
-icons = forecast_data['daypart'][0]['iconCode']
 
-
-dias[0] = 'Hoje'
+dias[0] = 'Hoje'    ##################################################################
 dias[1] = 'Amanhã'
-
-# Se passou das 13h, plota só do dia seguinte em diante
-if current_time.hour > 13:
+name_days = forecast_data['daypart'][0]['daypartName']
+if name_days[0] == 'Hoje':
+  precip_prob = forecast_data['daypart'][0]['precipChance'][0:11:2]  # Filtra apenas as chances diurnas
+  icons = forecast_data['daypart'][0]['iconCode'][0:11:2]  # Filtra apenas os ícones diurnos
+  # Se passou das 13h, plota só do dia seguinte em diante
+  if current_time.hour >= 10:
     # Remove o primeiro dia dos dados
     dias = dias[1:]
     temp_max = temp_max[1:]
     temp_min = temp_min[1:]
-    temp_max_parc = temp_max_parc[1:]       ##
-    temp_min_parc = temp_min_parc[1:]       ##
+    temp_max_parc = temp_max_parc[1:]
+    temp_min_parc = temp_min_parc[1:]
     precip_volume = precip_volume[1:]
-    precip_prob = precip_prob[1:]
     narrativas = narrativas[1:]
+    precip_prob = precip_prob[1:]
     icons = icons[1:]
+else:
+  precip_prob = forecast_data['daypart'][0]['precipChance'][1:10:2]  # Filtra apenas as chances diurnas
+  icons = forecast_data['daypart'][0]['iconCode'][1:10:2]  # Filtra apenas os ícones diurnos
+  ##################################################################
+
 
 fig, ax1 = plt.subplots(figsize=(9, 8))
 
@@ -90,7 +96,7 @@ for i in range(len(dias)):  ##
 # Plot da precipitação
 ax2 = ax1.twinx()
 bars = ax2.bar(dias, precip_volume, alpha=0.3, color='blue', label='Chuva') ##
-ax2.set_ylabel('Volume de precipitação (mm)', color='blue')
+ax2.set_ylabel('Volume de precipitação (mm)', color='blue',fontsize=12)
 ax2.tick_params(axis='y', labelcolor='blue')
 ax2.set_ylim(0, max(20, 5*np.ceil(1.3*max(precip_volume)/5)))  # Ajusta o limite do eixo Y (mínimo ymax = 20 mm)
 
@@ -107,7 +113,7 @@ ax2.yaxis.set_major_locator(MaxNLocator(num_ticks))
 # Configurações finais do gráfico
 ax1.set_xticks(range(len(dias)))
 ax1.set_xticklabels(dias)
-ax1.set_ylabel('Temperatura (°C)')
+ax1.set_ylabel('Temperatura (°C)',fontsize=12)
 ax1.set_title('Previsão do tempo para os próximos dias')
 ax1.grid(True, linestyle='--', alpha=0.5)
 ax1.yaxis.set_major_formatter(formatter)
@@ -127,7 +133,7 @@ ax1.legend(handles, labels, loc='best')  # Escolha a posição desejada para a l
 # Adicionando os ícones e condições do tempo abaixo do gráfico
 for i, (dia, cond) in enumerate(zip(dias, narrativas)):
     
-    icone = icons[2*i]
+    icone = icons[i]
 
     # Ícone fictício, substitua pelo caminho dos seus ícones para condições meteorológicas
     try:
@@ -141,8 +147,10 @@ for i, (dia, cond) in enumerate(zip(dias, narrativas)):
     #icon_path = f'iconesPrevisao/{icone}.png'
 
     #img = mpimg.imread(icon_path)
-    
-    ax1.figure.figimage(img, 110 + i * 120, 103, alpha=1.0, zorder=1)  # Ajuste a posição conforme necessário
+    if len(dias) == 6:
+        ax1.figure.figimage(img, 110 + i * 120, 103, alpha=1.0, zorder=1)  # Ajuste a posição conforme necessário
+    elif len(dias) == 5:
+        ax1.figure.figimage(img, 110 + i * 150, 103, alpha=1.0, zorder=1)  # Ajuste a posição conforme necessário
 
     # Texto da condição abaixo do ícone
     # Aplica a quebra de linha à narrativa, sem quebrar palavras no meio
