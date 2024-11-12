@@ -10,6 +10,7 @@ import textwrap
 from datetime import datetime, timezone, timedelta
 import pytz
 from PIL import Image
+import os
 
 # Função para quebrar o texto entre palavras com um limite de largura
 def wrap_text(text, width=12):
