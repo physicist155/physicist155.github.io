@@ -125,7 +125,7 @@ if temp is not None:
     quadrado = plt.Rectangle((0.15, 1.03), 0.22, 0.10, transform=fig.transFigure, color=temp_color, lw=0)
     fig.patches.append(quadrado)
     plt.figtext(0.26, 1.05, f"Temperatura:\n {temp:.1f} °C", fontsize=18, ha='center', color='black')
-    plt.figtext(0.26, 1.00, f"Ponto de orvalho: {dew_point:.1f} °C", fontsize=10, ha='center', color='black')
+    plt.figtext(0.26, 1.00, f"Ponto de orvalho: {dew_point:.1f} °C", fontsize=12, ha='center', color='black')
 
     quadrado = plt.Rectangle((0.39, 1.03), 0.22, 0.10, transform=fig.transFigure, color=hum_color, lw=0)
     fig.patches.append(quadrado)
@@ -143,41 +143,49 @@ if temp is not None:
     
     plt.subplots_adjust(right=0.5)
     # Exibir mínimas e máximas diárias à direita
-    plt.figtext(0.99, 0.83, "Temperatura", fontsize=12)
-    plt.figtext(0.99, 0.80, f"Mínima: {min_temp:.1f} °C")
-    plt.figtext(0.99, 0.78, f"Máxima: {max_temp:.1f} °C")
-    plt.figtext(0.99, 0.54, "Umidade", fontsize=12)
-    plt.figtext(0.99, 0.51, f"Mínima: {min_humidity:.0f} %")
-    plt.figtext(0.99, 0.49, f"Máxima: {max_humidity:.0f} %")
-    plt.figtext(0.99, 0.26, "Pressão", fontsize=12)
-    plt.figtext(0.99, 0.23, f"Mínima: {min_pressure:.1f} hPa")
-    plt.figtext(0.99, 0.21, f"Máxima: {max_pressure:.1f} hPa")
+    plt.figtext(0.99, 0.83, "Temperatura", fontsize=16)
+    plt.figtext(0.99, 0.80, f"Mínima: {min_temp:.1f} °C", fontsize=12)
+    plt.figtext(0.99, 0.78, f"Máxima: {max_temp:.1f} °C", fontsize=12)
+    plt.figtext(0.99, 0.54, "Umidade", fontsize=16)
+    plt.figtext(0.99, 0.51, f"Mínima: {min_humidity:.0f} %", fontsize=12)
+    plt.figtext(0.99, 0.49, f"Máxima: {max_humidity:.0f} %", fontsize=12)
+    plt.figtext(0.99, 0.26, "Pressão", fontsize=16)
+    plt.figtext(0.99, 0.23, f"Mínima: {min_pressure:.1f} hPa", fontsize=12)
+    plt.figtext(0.99, 0.21, f"Máxima: {max_pressure:.1f} hPa", fontsize=12)
 
     # Temperatura
     axs[0].plot(df['Timestamp'], df['Temperature'], label="Temperatura", color='red', marker='o')
     axs[0].plot(df['Timestamp'], df['Dew Point'], label="Ponto de orvalho", color="green", linestyle="--", marker='o',markersize=3)
-    axs[0].set_ylabel("Temperatura (°C)")
-    axs[0].yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{x:.1f}"))
+    axs[0].set_ylabel("Temperatura (°C)",fontsize=14)
+    axs[0].yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{x}"))
     axs[0].legend(loc="upper left")
     axs[0].grid(True)
+    for label in axs[0].get_yticklabels(): #Tamanho dos rótulos
+        label.set_fontsize(14)
 
     # Umidade
     axs[1].plot(df['Timestamp'], df['Humidity'], color='blue', marker='o')
-    axs[1].set_ylabel("Umidade relativa (%)")
+    axs[1].set_ylabel("Umidade relativa (%)",fontsize=14)
     axs[1].set_ylim([0, 110]) 
     axs[1].yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{x:.0f}"))
     axs[1].grid(True)
+    for label in axs[1].get_yticklabels(): #Tamanho dos rótulos
+        label.set_fontsize(14)
 
     # Pressão
     axs[2].plot(df['Timestamp'], df['Pressure'], color='black', marker='o')
-    axs[2].set_ylabel("Pressão (hPa)")
+    axs[2].set_ylabel("Pressão (hPa)",fontsize=14)
     axs[2].yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{x:.0f}"))
     axs[2].grid(True)
+    for label in axs[2].get_yticklabels(): #Tamanho dos rótulos
+        label.set_fontsize(14)
 
     # Formatação do eixo X
     axs[2].xaxis.set_major_formatter(mdates.DateFormatter('%H:%M', tz=brasilia_tz))
-    axs[2].xaxis.set_major_locator(mdates.HourLocator(interval=1))
-    plt.xlabel("Hora local")
+    axs[2].xaxis.set_major_locator(mdates.HourLocator(interval=2))
+    for label in axs[2].get_xticklabels():
+        label.set_fontsize(14)
+    plt.xlabel("Hora local",fontsize=14)
     plt.gcf().autofmt_xdate()
 
     # Configurar limites para cada eixo Y em cada subplot
