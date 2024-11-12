@@ -55,7 +55,7 @@ if name_days[0] == 'Hoje':
   precip_prob = forecast_data['daypart'][0]['precipChance'][0:11:2]  # Filtra apenas as chances diurnas
   icons = forecast_data['daypart'][0]['iconCode'][0:11:2]  # Filtra apenas os ícones diurnos
   # Se passou das 13h, plota só do dia seguinte em diante
-  if current_time.hour >= 10:
+  if current_time.hour >= 13:
     # Remove o primeiro dia dos dados
     dias = dias[1:]
     temp_max = temp_max[1:]
