@@ -13,6 +13,7 @@
             margin: 0;
             flex-direction: column;
             text-align: center;
+            position: relative;
         }
 
         /* Estilo para centralizar as imagens horizontalmente */
@@ -30,7 +31,7 @@
 
         /* Adiciona mais espaço entre as imagens e o texto */
         .texto-final {
-            margin-top: 20px; /* Ajuste este valor conforme necessário */
+            margin-top: 30px; /* Ajuste este valor conforme necessário */
         }
 
         /* Estilo para alinhar o primeiro h2 à esquerda */
@@ -38,6 +39,36 @@
             text-align: left;
             width: 100%; /* Faz o elemento ocupar toda a largura disponível */
             padding-left: 20px; /* Opcional: ajuste de espaçamento da borda esquerda */
+        }
+
+        /* Contêiner para o oferecimento */
+        .oferecimento-container {
+            position: relative;
+            width: 100%; /* Ocupa a largura total do contêiner */
+            text-align: left;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        /* Posicionamento do QR code à direita */
+        .qr-code-container {
+            position: absolute;
+            right: 200px; /* Distância do lado direito */
+            top: -70px;
+            text-align: center; /* Centraliza o texto e imagem no contêiner */
+        }
+
+        /* Ajuste do tamanho do QR code */
+        .qr-code {
+            width: 130px; /* Define a largura do QR code */
+            height: auto; /* Mantém a proporção */
+            margin-bottom: 5px; /* Aproxima o h3 ao QR code */
+        }
+
+        /* Remover margens do h3 para ajustá-lo ao QR code */
+        .qr-code-container h3 {
+            margin: 0;
+            font-size: 14px; /* Ajuste opcional do tamanho da fonte */
         }
     </style>
 </head>
@@ -47,7 +78,13 @@
         <img src="previsao.png" alt="Previsão do Tempo" class="imagem2">
     </div>
     <h2 class="texto-final">Essa estação também pode ser visualizada no <a href="https://www.wunderground.com/dashboard/pws/ISOPAU314">Weather Underground.</a></h2>
-    <h2 class="texto-final">Oferecimento: Hackerspace IFUSP e LFA-USP.</h2>
+    
+    <div class="oferecimento-container">
+        <h2>Oferecimento: Hackerspace IFUSP e LFA-USP.</h2>
+        <div class="qr-code-container">
+            <img src="qrCodeEstacao.png" alt="QR Code Estação" class="qr-code">
+            <h3>Versão Mobile</h3>
+        </div>
+    </div>
 </body>
 </html>
-
