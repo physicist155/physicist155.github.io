@@ -67,8 +67,8 @@ if name_days[0] == 'Hoje':
     precip_prob = precip_prob[1:]
     icons = icons[1:]
 else:
-  precip_prob = forecast_data['daypart'][0]['precipChance'][1:10:2]  # Filtra apenas as chances diurnas
-  icons = forecast_data['daypart'][0]['iconCode'][1:10:2]  # Filtra apenas os ícones diurnos
+  precip_prob = forecast_data['daypart'][0]['precipChance'][1::2]  # Filtra apenas as chances diurnas
+  icons = forecast_data['daypart'][0]['iconCode'][1::2]  # Filtra apenas os ícones diurnos
   ##################################################################
 
 
