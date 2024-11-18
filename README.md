@@ -17,7 +17,7 @@ Os dados são atualizados periodicamente e disponibilizados de maneira acessíve
 ## 💻 Tecnologias e Ferramentas Utilizadas
 
 - **Sensores de Clima**: Diversos sensores meteorológicos foram instalados para garantir a precisão das medições.
-- **Microcontroladores**: Arduinos e ESP32 são usados para integrar os sensores e enviar os dados coletados para a central de processamento.
+- **Microcontroladores**: Arduinos, ESP8266 e ESP32 são usados para integrar os sensores e enviar os dados coletados para a central de processamento.
 - **Central de Processamento**: Um servidor central coleta, processa e armazena os dados, garantindo consistência e confiabilidade.
 - **Visualização de Dados**: Painéis e gráficos dinâmicos são exibidos nos telões do IFUSP, possibilitando uma análise visual direta das condições meteorológicas.
   
