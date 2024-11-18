@@ -1,4 +1,3 @@
-
 import numpy as np
 import requests
 from datetime import datetime
@@ -51,25 +50,21 @@ narrativas = [narr.split('.')[0] + '.' for narr in forecast_data['narrative']]
 dias[0] = 'Hoje'    ##################################################################
 dias[1] = 'Amanhã'
 name_days = forecast_data['daypart'][0]['daypartName']
-if name_days[0] == 'Hoje':
-  precip_prob = forecast_data['daypart'][0]['precipChance'][0:11:2]  # Filtra apenas as chances diurnas
-  icons = forecast_data['daypart'][0]['iconCode'][0:11:2]  # Filtra apenas os ícones diurnos
-  # Se passou das 13h, plota só do dia seguinte em diante
-  if current_time.hour >= 13:
-    # Remove o primeiro dia dos dados
-    dias = dias[1:]
-    temp_max = temp_max[1:]
-    temp_min = temp_min[1:]
-    temp_max_parc = temp_max_parc[1:]
-    temp_min_parc = temp_min_parc[1:]
-    precip_volume = precip_volume[1:]
-    narrativas = narrativas[1:]
-    precip_prob = precip_prob[1:]
-    icons = icons[1:]
-else:
+
+posicao_amanha = name_days.index('Amanhã')
+
+if posicao_amanha == 2: #Quando Hoje está disponivel e Amanhã é o terceiro elemento
+  precip_prob = forecast_data['daypart'][0]['precipChance'][0::2]  # Filtra apenas as chances diurnas
+  icons = forecast_data['daypart'][0]['iconCode'][0::2]  # Filtra apenas os ícones diurnos
+
+elif posicao_amanha == 1: #Quando Hoje não esta disponivel e Amanhã é o segundo elemento
   precip_prob = forecast_data['daypart'][0]['precipChance'][1::2]  # Filtra apenas as chances diurnas
   icons = forecast_data['daypart'][0]['iconCode'][1::2]  # Filtra apenas os ícones diurnos
   ##################################################################
+
+else: #Quando acontecer algo estranho e Amanhã estiver numa posição diferente do esperado
+  precip_prob = forecast_data['daypart'][0]['precipChance'][posicao_amanha::2]  # Filtra apenas as chances diurnas
+  icons = forecast_data['daypart'][0]['iconCode'][posicao_amanha::2]  # Filtra apenas os ícones diurnos
 
 
 fig, ax1 = plt.subplots(figsize=(9, 8))
