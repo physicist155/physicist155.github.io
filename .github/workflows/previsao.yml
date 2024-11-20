@@ -1,10 +1,10 @@
 name: Previsao
 
-#on:
- # schedule:
-    #- cron: '0 10 * * *'  # 7h no UTC-3
-    #- cron: '0 22 * * *'  # 19h no UTC-3
-#  workflow_dispatch:  # Permite execução manual
+on:
+  schedule:
+    - cron: '0 10 * * *'  # 7h no UTC-3
+    - cron: '0 22 * * *'  # 19h no UTC-3
+  workflow_dispatch:  # Permite execução manual
 
 permissions:
   contents: write  # Concede permissão de escrita para o conteúdo do repositório
