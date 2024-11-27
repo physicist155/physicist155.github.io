@@ -56,6 +56,8 @@ temp, humidity, pressure, dew_point, timestamp = get_weather_data()
 # Converta 'timestamp' para datetime
 timestamp = datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%SZ')
 timestamp = brasilia_tz.localize(timestamp)
+# Remover linhas com valores NaT no DataFrame
+df = df.dropna(subset=['Timestamp'])
 
 # Verificar se o timestamp já existe no DataFrame
 if timestamp not in df['Timestamp'].values:
