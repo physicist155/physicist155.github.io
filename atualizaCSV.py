@@ -67,8 +67,11 @@ if timestamp not in df['Timestamp'].values:
     # Concatenar com o DataFrame existente
     df = pd.concat([df, new_data], ignore_index=True)
 
+    # Converter a coluna 'Timestamp' para datetime
+    df['Timestamp'] = pd.to_datetime(df['Timestamp'])
+
     # Filtrar para manter apenas os dados das últimas 24 horas
-    now = datetime.now(brasilia_tz)
+    now = datetime.now(tz=brasilia_tz)
     df = df[df['Timestamp'] >= now - pd.Timedelta(hours=24)]
 
     # Salvar no arquivo CSV
