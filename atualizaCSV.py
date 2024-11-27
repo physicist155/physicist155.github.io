@@ -71,6 +71,7 @@ if timestamp not in df['Timestamp'].values:
     # Concatenar com o DataFrame existente
     df = pd.concat([df, new_data], ignore_index=True)
 
+    # Salvar no arquivo CSV
     df['Timestamp'] = pd.to_datetime(df['Timestamp'], errors='coerce')  # Garantir que todas as datas sejam convertidas
     if df['Timestamp'].dt.tz is None:
         # Caso não tenha fuso horário, podemos aplicar o tz_localize
@@ -78,18 +79,11 @@ if timestamp not in df['Timestamp'].values:
     else:
         # Caso tenha fuso horário, usamos tz_convert
         df['Timestamp'] = df['Timestamp'].dt.tz_convert('America/Sao_Paulo')
-    
-    # Agora você pode filtrar os dados com o fuso horário correto, sem mudar o horário
-    now = datetime.now(brasilia_tz)
-    df = df[df['Timestamp'] >= now - pd.Timedelta(hours=24)]
-    
-    # Salvar no arquivo CSV
-    df.to_csv(csv_file, index=False)
-    #Estacao On/Off
+
+    df.to_csv(csv_file, index=False)  # Salvar no arquivo CSV
     estadoEstacao = 'Online'
 else:
     print("Dados já existentes para o timestamp:", timestamp)
-    #Estacao On/Off
     estadoEstacao = 'Offline'
 
 # Configurar subplots
