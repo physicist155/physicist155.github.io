@@ -71,13 +71,16 @@ if timestamp not in df['Timestamp'].values:
     # Concatenar com o DataFrame existente
     df = pd.concat([df, new_data], ignore_index=True)
 
-    # Converter a coluna 'Timestamp' para datetime
+    # Garantir que os timestamps estejam em HBR (Brasília), se já estiverem
     df['Timestamp'] = pd.to_datetime(df['Timestamp'])
-
-    # Filtrar para manter apenas os dados das últimas 24 horas
-    now = datetime.now(tz=brasilia_tz)
+    
+    # Se os timestamps já estiverem em HBR, podemos definir o fuso horário explicitamente sem mudar o horário
+    df['Timestamp'] = df['Timestamp'].dt.tz_localize(brasilia_tz, ambiguous='NaT')  # Adiciona o fuso horário HBR
+    
+    # Agora você pode filtrar os dados com o fuso horário correto, sem mudar o horário
+    now = datetime.now(brasilia_tz)
     df = df[df['Timestamp'] >= now - pd.Timedelta(hours=24)]
-
+    
     # Salvar no arquivo CSV
     df.to_csv(csv_file, index=False)
     #Estacao On/Off
