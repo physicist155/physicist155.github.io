@@ -20,6 +20,7 @@ def get_weather_data():
     STATION_ID = "ISOPAU314"
     url = f"https://api.weather.com/v2/pws/observations/current?stationId={STATION_ID}&format=json&units=m&numericPrecision=decimal&apiKey={WU_API_KEY}"
     timestamp = datetime.now(tz=brasilia_tz)
+    timestamp = pd.to_datetime(timestamp)
     try:
         response = requests.get(url)
         response.raise_for_status()
@@ -46,9 +47,6 @@ csv_file = 'weather_data.csv'
 if os.path.exists(csv_file):
     # Ler os dados existentes
     df = pd.read_csv(csv_file, parse_dates=['Timestamp'])
-    # Filtrar para manter apenas os dados das últimas 24 horas
-    now = datetime.now(brasilia_tz)
-    df = df[df['Timestamp'] >= now - pd.Timedelta(hours=24)]
 else:
     # Criar um DataFrame vazio
     df = pd.DataFrame(columns=['Timestamp', 'Temperature', 'Humidity', 'Pressure', 'Dew Point'])
