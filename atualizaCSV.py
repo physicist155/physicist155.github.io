@@ -55,6 +55,7 @@ temp, humidity, pressure, dew_point, timestamp = get_weather_data()
 
 # Converta 'timestamp' para datetime
 timestamp = datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%SZ')
+timestamp = brasilia_tz.localize(timestamp)
 
 # Verificar se o timestamp já existe no DataFrame
 if timestamp not in df['Timestamp'].values:
@@ -71,8 +72,7 @@ if timestamp not in df['Timestamp'].values:
     df = pd.concat([df, new_data], ignore_index=True)
 
     # Converter a coluna 'Timestamp' para datetime
-    df['Timestamp'] = pd.to_datetime(df['Timestamp'], utc=True)
-    df['Timestamp'] = df['Timestamp'].dt.tz_convert(brasilia_tz)
+    df['Timestamp'] = pd.to_datetime(df['Timestamp'])
 
     # Filtrar para manter apenas os dados das últimas 24 horas
     now = datetime.now(tz=brasilia_tz)
