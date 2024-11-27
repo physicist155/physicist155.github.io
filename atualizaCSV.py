@@ -52,7 +52,7 @@ temp, humidity, pressure, dew_point, timestamp = get_weather_data()
 
 # Converter o timestamp atual para datetime e fuso horário correto
 timestamp = datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%SZ')
-timestamp = brasilia_tz.localize(timestamp)
+#timestamp = brasilia_tz.localize(timestamp)
 
 # Remover linhas com valores NaT no DataFrame
 df['Timestamp'] = pd.to_datetime(df['Timestamp'], errors='coerce')
@@ -71,7 +71,7 @@ if timestamp not in df['Timestamp'].values:
     df = pd.concat([df, new_data], ignore_index=True)
 
     # Ajustar o fuso horário para o DataFrame
-    df['Timestamp'] = pd.to_datetime(df['Timestamp'], errors='coerce').dt.tz_localize('UTC').dt.tz_convert(brasilia_tz)
+    #df['Timestamp'] = pd.to_datetime(df['Timestamp'], errors='coerce').dt.tz_localize('UTC').dt.tz_convert(brasilia_tz)
 
     # Salvar no arquivo CSV
     df.to_csv(csv_file, index=False)
