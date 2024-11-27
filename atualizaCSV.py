@@ -91,16 +91,16 @@ minuto_atual = f"{timestamp.minute:02d}"
 dia_atual = f"{timestamp.day:02d}"
 mes_atual = f"{timestamp.month}"
 ano_atual = f"{timestamp.year}"
+
+# Cálculo de mínimas e máximas a partir dos dados do DataFrame
+min_temp = df['Temperature'].min()
+max_temp = df['Temperature'].max()
+min_humidity = df['Humidity'].min()
+max_humidity = df['Humidity'].max()
+min_pressure = df['Pressure'].min()
+max_pressure = df['Pressure'].max()
     
 if temp is not None:
-    # Cálculo de mínimas e máximas a partir dos dados do DataFrame
-    min_temp = df['Temperature'].min()
-    max_temp = df['Temperature'].max()
-    min_humidity = df['Humidity'].min()
-    max_humidity = df['Humidity'].max()
-    min_pressure = df['Pressure'].min()
-    max_pressure = df['Pressure'].max()
-
     # Definir o colormap baseado na temperatura - NÃO ALTERAR O COLORMAP
     c1 = plt.cm.Purples(np.linspace(0, 1, 50))
     c2 = plt.cm.turbo(np.linspace(0, 1, 176))
@@ -117,6 +117,7 @@ if temp is not None:
     tmin_color = cmap(np.clip((min_temp + 10) / 55, 0, 1))
     hum_color = cmap_hum(humidity / 100)
     pres_color = cmap_pres((pressure - 920) / 20)
+    estadoEstacao = 'Online'
 
 else:
     print("Dados não foram obtidos.")
