@@ -45,7 +45,7 @@ csv_file = 'weather_data.csv'
 # Verificar se o arquivo existe
 if os.path.exists(csv_file):
     # Ler os dados existentes
-    df = pd.read_csv(csv_file, parse_dates=['Timestamp'])
+    df = pd.read_csv(csv_file, parse_dates=['Timestamp'], date_parser=pd.to_datetime)
 else:
     # Criar um DataFrame vazio
     df = pd.DataFrame(columns=['Timestamp', 'Temperature', 'Humidity', 'Pressure', 'Dew Point'])
@@ -71,8 +71,9 @@ if timestamp not in df['Timestamp'].values:
     # Concatenar com o DataFrame existente
     df = pd.concat([df, new_data], ignore_index=True)
 
-    # Se os timestamps já estiverem em HBR, podemos definir o fuso horário explicitamente sem mudar o horário
-    df['Timestamp'] = df['Timestamp'].dt.tz_localize(brasilia_tz, ambiguous='NaT')  # Adiciona o fuso horário HBR
+    df['Timestamp'] = pd.to_datetime(df['Timestamp'], errors='coerce')  # Garantir que todas as datas sejam convertidas
+    df['Timestamp'] = df['Timestamp'].dt.tz_localize('America/Sao_Paulo', ambiguous='NaT')  # Localizar no fuso horário HBR
+    df = df.dropna(subset=['Timestamp'])
     
     # Agora você pode filtrar os dados com o fuso horário correto, sem mudar o horário
     now = datetime.now(brasilia_tz)
