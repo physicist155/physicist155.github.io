@@ -71,9 +71,6 @@ if timestamp not in df['Timestamp'].values:
     # Concatenar com o DataFrame existente
     df = pd.concat([df, new_data], ignore_index=True)
 
-    # Garantir que os timestamps estejam em HBR (Brasília), se já estiverem
-    df['Timestamp'] = pd.to_datetime(df['Timestamp'])
-    
     # Se os timestamps já estiverem em HBR, podemos definir o fuso horário explicitamente sem mudar o horário
     df['Timestamp'] = df['Timestamp'].dt.tz_localize(brasilia_tz, ambiguous='NaT')  # Adiciona o fuso horário HBR
     
