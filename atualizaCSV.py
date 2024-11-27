@@ -53,6 +53,9 @@ else:
 # Obter os dados atuais
 temp, humidity, pressure, dew_point, timestamp = get_weather_data()
 
+# Converta 'timestamp' para datetime
+timestamp = datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=timezone.utc).astimezone(brasilia_tz)
+
 # Verificar se o timestamp já existe no DataFrame
 if timestamp not in df['Timestamp'].values:
     # Criar um DataFrame com o novo dado
