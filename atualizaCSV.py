@@ -19,7 +19,7 @@ def get_weather_data():
         raise ValueError("A chave da API não foi encontrada. Defina 'WU_API_KEY' como uma variável de ambiente.")
     STATION_ID = "ISOPAU314"
     url = f"https://api.weather.com/v2/pws/observations/current?stationId={STATION_ID}&format=json&units=m&numericPrecision=decimal&apiKey={WU_API_KEY}"
-    timestamp = datetime.strptime(obs_time_utc, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=timezone.utc).astimezone(brasilia_tz)
+    timestamp = datetime.now(tz=brasilia_tz)
     try:
         response = requests.get(url)
         response.raise_for_status()
