@@ -60,6 +60,13 @@ if posicao_amanha == 2: #Quando Hoje está disponivel e Amanhã é o terceiro el
 elif posicao_amanha == 1: #Quando Hoje não esta disponivel e Amanhã é o segundo elemento
   precip_prob = forecast_data['daypart'][0]['precipChance'][1::2]  # Filtra apenas as chances diurnas
   icons = forecast_data['daypart'][0]['iconCode'][1::2]  # Filtra apenas os ícones diurnos
+  dias = dias[1:]
+  temp_max = temp_max[1:]
+  temp_min = temp_min[1:]
+  temp_max_parc = temp_max_parc[1:]
+  temp_min_parc = temp_min_parc[1:]  
+  precip_volume = precip_volume[1:]
+  narrativas = narrativas[1:]  
   ##################################################################
 
 else: #Quando acontecer algo estranho e Amanhã estiver numa posição diferente do esperado
